@@ -1,11 +1,13 @@
 const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const CONF = require('./config').base
 
 const resolve = dir => path.join(__dirname, '../code/client/', dir)
 const assetsPath = dir => path.posix.join(CONF.assetsPath, dir)
 const isProd = process.env.NODE_ENV === 'production'
+
 
 module.exports = {
   mode: isProd ? 'production' : 'development',
@@ -53,13 +55,13 @@ module.exports = {
             use: ['css-loader', 'postcss-loader'],
             fallback: 'vue-style-loader'
           })
-          : ['vue-style-loader', 
-          {
-            loader: 'css-loader', 
-            options: {
-              esModule: false,
-            }
-          }, 'postcss-loader']
+          : ['vue-style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                esModule: false,
+              }
+            }, 'postcss-loader']
         // exclude: /node_modules/,
       },
       // 图片文件处理
@@ -97,5 +99,6 @@ module.exports = {
     //   filename: assetsPath('css/[name].[hash].css')
     // }),
     new VueLoaderPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
   ]
 }

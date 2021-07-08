@@ -7,7 +7,21 @@ Vue.use(Router)
 
 async function getAsyncRoutes(){
   const routes = []
-  let {data} = await request.get('/menu')
+  let data
+  try {
+    let res = await request.get('/menu')
+    data = res.data
+  } catch (error) {
+    console.error('菜单请求异常,改用静态数据')
+    data = [
+      {
+        funcName: 'helloWorld',
+        funcId: 1,
+        funcPath: '/helloWorld',
+        filePath: 'helloWorld'
+      }
+    ]
+  }
   for (let i = 0; i < data.length; i++) {
     const {filePath,funcPath} = data[i];
     routes.push({
@@ -21,7 +35,7 @@ async function getAsyncRoutes(){
 
 const routes = [
   {
-    path: '/index',
+    path: '/',
     component: ()=>import('../views/index.vue')
   }
 ]

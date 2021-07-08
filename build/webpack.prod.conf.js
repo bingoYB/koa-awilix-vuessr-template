@@ -12,6 +12,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
 // 资源路径
 const assetsPath = dir => path.posix.join(prodConf.assetsPath, dir)
 
@@ -82,6 +84,7 @@ const prod = merge({}, baseConf, {
      */
   },
   plugins: [
+    new CleanWebpackPlugin(),
     //压缩js
     new UglifyJsPlugin({
       uglifyOptions: {

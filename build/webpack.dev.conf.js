@@ -7,6 +7,9 @@ const baseConf = require('./webpack.base') //webpack基本配置
 const merge = require("webpack-merge")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin")
+
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
 //发送系统通知的一个node模块！
 // const notifier = require("node-notifier")
 
@@ -19,6 +22,7 @@ const dev = merge(baseConf, {
   //   rules: styleLoader.styleLoader({ extract: false, sourceMap: true })
   // },
   plugins: [
+    new CleanWebpackPlugin(),
     //开启HMR(热替换功能,替换更新部分,不重载页面！)
     new webpack.HotModuleReplacementPlugin(),
 

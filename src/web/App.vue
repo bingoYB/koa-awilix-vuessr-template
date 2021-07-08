@@ -8,7 +8,7 @@
     <el-container>
       <el-aside class="app-aside" width="200px">
         <div class="menu-item">
-          <router-link :to="'/helloWorld'">helloWorld</router-link>
+          <router-link :to="'/helloWorld'">helloWorld1</router-link>
         </div>
         <div class="menu-item">
           <router-link :to="'/index'">index</router-link>
